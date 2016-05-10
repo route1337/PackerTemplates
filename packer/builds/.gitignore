@@ -1,0 +1,5 @@
+# This .gitignore is to make sure this empty directory is committed to the repo
+# Ignore everything in this directory
+*
+# Except this file
+!.gitignore

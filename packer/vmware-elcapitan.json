@@ -1,0 +1,99 @@
+{
+  "builders": [
+    {
+      "boot_wait": "2s",
+      "disk_size": 20480,
+      "guest_os_type": "darwin15-64",
+      "iso_checksum": "{{user `iso_checksum`}}",
+      "iso_checksum_type": "{{user `iso_checksum_type`}}",
+      "iso_url": "{{user `iso_url`}}",
+      "output_directory": "packer_cache/packer-{{user `name`}}-vmware",
+      "skip_compaction": true,
+      "shutdown_command": "echo 'vagrant'|sudo -S shutdown -h now",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_username": "vagrant",
+      "ssh_wait_timeout": "10000s",
+      "tools_upload_flavor": "darwin",
+      "tools_upload_path": "/tmp/vmtools.iso",
+      "type": "vmware-iso",
+      "vm_name": "{{user `user_prefix`}}-{{user `name`}}",
+      "vmx_data": {
+        "cpuid.coresPerSocket": "1",
+        "ehci.present": "TRUE",
+        "firmware": "efi",
+        "hpet0.present": "TRUE",
+        "ich7m.present": "TRUE",
+        "keyboardAndMouseProfile": "macProfile",
+        "memsize": "3072",
+        "numvcpus": "1",
+        "smc.present": "TRUE",
+        "usb.present": "TRUE"
+      }
+    }
+  ],
+  "min_packer_version": "0.7.0",
+  "post-processors": [
+    {
+      "output": "builds/{{user `user_prefix`}}_{{.Provider}}-{{user `name`}}-{{user `version`}}.box",
+      "type": "vagrant",
+      "vagrantfile_template": "vagrantfile_templates/macosx.rb"
+    }
+  ],
+  "provisioners": [
+    {
+      "destination": "/private/tmp/kcpassword",
+      "source": "scripts/macosx/support/kcpassword",
+      "type": "file"
+    },
+    {
+      "environment_vars": [
+        "ftp_proxy={{user `ftp_proxy`}}",
+        "HOME_DIR={{user `home_dir`}}",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}",
+        "VAGRANT_BOX={{user `user_prefix`}}_{{.Provider}}-{{user `name`}}-{{user `version`}}"
+      ],
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "scripts": [
+        "scripts/macosx/hostname.sh",
+        "scripts/macosx/update.sh",
+        "scripts/macosx/networking.sh",
+        "scripts/common/vagrant.sh",
+        "scripts/macosx/vmtools.sh",
+        "scripts/macosx/xcodeclitools.sh",
+	"scripts/macosx/ansible.sh",
+        "scripts/macosx/cleanup.sh",
+        "scripts/macosx/minimize.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "inline": [
+        "[ -z \"{{user `autologin_vagrant_user`}}\" ] && exit",
+        "echo \"Enabling automatic GUI login for the 'vagrant' user..\"",
+        "cp /private/tmp/kcpassword /private/etc/kcpassword",
+        "/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser vagrant"
+      ],
+      "type": "shell"
+    }
+  ],
+  "variables": {
+    "autologin_vagrant_user": "",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "git_sha": "unset",
+    "home_dir": "/Users/vagrant",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "iso_checksum": "1622fae738aed35586d9288290a79a69",
+    "iso_checksum_type": "md5",
+    "iso_url": "InstallDisks/OSX_InstallESD_10.11.1_15B42.dmg",
+    "name": "ElCapitan-10.11.3",
+    "no_proxy": "{{env `no_proxy`}}",
+    "timestamp": "{{isotime \"20060102150405\"}}",
+    "user_prefix": "route1337",
+    "version": "v0.1.0"
+  }
+}
