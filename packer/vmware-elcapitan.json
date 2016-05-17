@@ -87,13 +87,13 @@
     "home_dir": "/Users/vagrant",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "1622fae738aed35586d9288290a79a69",
+    "iso_checksum": "f3dee150b08fbd704f961e646f7dc157",
     "iso_checksum_type": "md5",
-    "iso_url": "InstallDisks/OSX_InstallESD_10.11.1_15B42.dmg",
-    "name": "ElCapitan-10.11.3",
+    "iso_url": "InstallDisks/OSX_InstallESD_10.11.5_15F34.dmg",
+    "name": "ElCapitan-10.11.5",
     "no_proxy": "{{env `no_proxy`}}",
     "timestamp": "{{isotime \"20060102150405\"}}",
     "user_prefix": "route1337",
-    "version": "v0.1.0"
+    "version": "v0.1.1"
   }
 }
