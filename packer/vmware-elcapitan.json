@@ -62,8 +62,37 @@
         "scripts/macosx/networking.sh",
         "scripts/common/vagrant.sh",
         "scripts/macosx/vmtools.sh",
-        "scripts/macosx/xcodeclitools.sh",
-	"scripts/macosx/ansible.sh",
+        "scripts/macosx/xcodeclitools.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "environment_vars": [
+        "ftp_proxy={{user `ftp_proxy`}}",
+        "HOME_DIR={{user `home_dir`}}",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}",
+        "VAGRANT_BOX={{user `user_prefix`}}_{{.Provider}}-{{user `name`}}-{{user `version`}}"
+      ],
+      "execute_command": "echo 'vagrant'|{{.Vars}} sh -eux '{{.Path}}'",
+      "scripts": [
+        "scripts/macosx/homebrew.sh",
+        "scripts/macosx/ansible.sh"
+      ],
+      "type": "shell"
+    },
+    {
+      "environment_vars": [
+        "ftp_proxy={{user `ftp_proxy`}}",
+        "HOME_DIR={{user `home_dir`}}",
+        "http_proxy={{user `http_proxy`}}",
+        "https_proxy={{user `https_proxy`}}",
+        "no_proxy={{user `no_proxy`}}",
+        "VAGRANT_BOX={{user `user_prefix`}}_{{.Provider}}-{{user `name`}}-{{user `version`}}"
+      ],
+      "execute_command": "echo 'vagrant'|{{.Vars}} sudo -S -E sh -eux '{{.Path}}'",
+      "scripts": [
         "scripts/macosx/cleanup.sh",
         "scripts/macosx/minimize.sh"
       ],
@@ -87,7 +116,7 @@
     "home_dir": "/Users/vagrant",
     "http_proxy": "{{env `http_proxy`}}",
     "https_proxy": "{{env `https_proxy`}}",
-    "iso_checksum": "f3dee150b08fbd704f961e646f7dc157",
+    "iso_checksum": "fd8f4ef58547adf9846b19d0964805cc",
     "iso_checksum_type": "md5",
     "iso_url": "InstallDisks/OSX_InstallESD_10.11.5_15F34.dmg",
     "name": "ElCapitan-10.11.5",
