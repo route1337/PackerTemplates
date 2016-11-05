@@ -1,15 +1,15 @@
-Matt's Packer Templates
+Route 1337 Packer Templates
 ==============
-This repo contains various packer templates I use to generate Vagrant boxes
+This repo contains the various packer templates used to generate some of Route 1337's [Vagrant Boxes](https://github.com/route1337/VagrantBoxes)
 
 InstallDisks Directory
 ------------
 This directory contains DMG and ISO files, so they can't be checked in to git due to their size and/or licensing restrictions.  
-To generate the DMGs/ISOs for OS X systems use the prepare_iso.sh script in iso-prep
+To generate the DMGs/ISOs for macOS systems use the prepare_iso.sh script in iso-prep
 
-Preparing a MAC DMG to go into InstallDisks
+Preparing a Mac DMG to go into InstallDisks
 ------------
-These are the steps to prepare a Mac DMG to go into InstallDisks (10.9-10.11)
+These are the steps to prepare a Mac DMG to go into InstallDisks (10.9-10.12)
   1. Download the Installer App from the Mac App Store (Yosemite for example)
   2. Run this command from inside iso-prep: sudo prepare_iso/prepare_iso.sh "/Applications/Install OS X Yosemite.app" out/
   3. Move the DMG from iso-prep/out/ to packer/InstallDisks/ and update the corresponding JSON file
