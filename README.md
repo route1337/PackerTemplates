@@ -36,3 +36,9 @@ Credits for a good portion of the original materials
 Most of the Mac related contents of iso-prep come from: [Tim Sutton's osx-vm-templates](https://github.com/timsutton/osx-vm-templates) under the [MIT License](https://github.com/timsutton/osx-vm-templates/blob/master/LICENSE.md)  
 Most of the Mac related contents of packer come from: [Fletcher Nichol's packer-templates](https://github.com/fnichol/packer-templates) which has no license mentioned  
 New El Capitan prepare_iso.sh in iso-prep comes from: [Antony Blakey's Gist](https://gist.github.com/AntonyBlakey/e0116fe82e596c5005d8) which has no license mentioned
+
+Donate To Support These Vagrant Boxes
+------------
+Route 1337, LLC operates entirely on donations. If you find these scripts useful, please consider [contacting us](https://www.route1337.com/contact-us/) about how to donate.
+
+Thank you for your support!
