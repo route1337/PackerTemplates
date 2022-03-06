@@ -39,6 +39,6 @@ New El Capitan prepare_iso.sh in iso-prep comes from: [Antony Blakey's Gist](htt
 
 Donate To Support These Packer Templates
 ----------------------------------------
-Route 1337, LLC operates entirely on donations. If you find these scripts useful, please consider using the GitHub Sponsors button to donate to the people who contributed to this project.
+Route 1337 LLC's open source code heavily relies on donations. If you find these scripts useful, please consider using the GitHub Sponsors button to show your continued support.
 
 Thank you for your support!
